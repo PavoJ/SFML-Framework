@@ -2,7 +2,7 @@
 #define MENU_HPP
 
 #include"interactables/interactable.hpp"
-#include"interactables/button.hpp"
+#include"interactables/textButton.hpp"
 
 #include<SFML\Graphics.hpp>
 

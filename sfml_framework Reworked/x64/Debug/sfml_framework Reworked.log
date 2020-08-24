@@ -1,5 +1,6 @@
-﻿  button.cpp
+﻿  textButton.cpp
+  imageButton.cpp
   interactable.cpp
   menu.cpp
   Generating Code...
-  sfml_framework Reworked.vcxproj -> D:\Documents\C++\SFML-Framework\x64\Debug\sfml_framework Reworked.lib
+  sfml_framework Reworked.vcxproj -> C:\Users\Utente\Documents\GitHub\SFML-Framework\x64\Debug\sfml_framework Reworked.lib
