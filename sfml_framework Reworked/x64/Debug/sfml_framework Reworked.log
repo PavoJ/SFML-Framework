@@ -1,7 +1,2 @@
-﻿  button.cpp
-  interactable.cpp
-  menu.cpp
-  Generating Code...
-sfml-window-d.lib(sfml-window-d-2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in sfml-graphics-d.lib(sfml-graphics-d-2.dll); second definition ignored
-sfml-system-d.lib(sfml-system-d-2.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in sfml-graphics-d.lib(sfml-graphics-d-2.dll); second definition ignored
-  sfml_framework Reworked.vcxproj -> P:\Documents\Documents\sync\prog\C++\In Development\Fables\sfml_framework\x64\Debug\sfml_framework Reworked.lib
+﻿  menu.cpp
+  sfml_framework Reworked.vcxproj -> D:\Documents\C++\SFML-Framework\x64\Debug\sfml_framework Reworked.lib

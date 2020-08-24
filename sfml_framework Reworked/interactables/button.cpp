@@ -24,12 +24,16 @@ namespace sff
         onHover = nullptr;
     };
 
-    button::button(sf::String& displayText, sf::Font& font, unsigned int characterSize)
+    button::button(const char* displayText, sf::Font& font, unsigned int characterSize)
     {
         pointsOfInterest = nullptr;
         pointsCnt = 0;
 
-        text.setString(displayText);
+        textString = displayText;
+        text.setString(textString);
+
+        textString = "no, non credo proprio";
+
         text.setFont(font);
         text.setCharacterSize(characterSize);
 

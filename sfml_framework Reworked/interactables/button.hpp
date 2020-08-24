@@ -11,6 +11,8 @@ namespace sff
     {
     protected:
         sf::Text text;
+        sf::String textString;
+
         sf::RectangleShape buttonRect;
 
         std::function<void()>* onClick;
@@ -22,7 +24,7 @@ namespace sff
         //creates an empty button
         button();
         //creates a button
-        button(sf::String& displayText, sf::Font& font, unsigned int characterSize);
+        button(const char* displayText, sf::Font& font, unsigned int characterSize);
 
         void setOnClick(std::function<void()>& onClick);
         void setOnHover(std::function<void()>& onHover);

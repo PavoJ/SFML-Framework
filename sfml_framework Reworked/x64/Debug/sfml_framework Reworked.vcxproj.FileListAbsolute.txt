@@ -1,2 +1,4 @@
 P:\Documents\Documents\sync\prog\C++\In Development\Fables\sfml_framework\x64\Debug\sfml_framework Reworked.pdb
 P:\Documents\Documents\sync\prog\C++\In Development\Fables\sfml_framework\sfml_framework Reworked\x64\Debug\sfml_framework Reworked.pdb
+D:\Documents\C++\SFML-Framework\x64\Debug\sfml_framework Reworked.pdb
+D:\Documents\C++\SFML-Framework\sfml_framework Reworked\x64\Debug\sfml_framework Reworked.pdb
