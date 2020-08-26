@@ -1,5 +1,5 @@
-#ifndef BUTTON_HPP
-#define BUTTON_HPP
+#ifndef TEXTBUTTON_HPP
+#define TEXTBUTTON_HPP
 
 #include "interactable.hpp"
 #include <SFML\Graphics.hpp>
@@ -7,11 +7,20 @@
 
 namespace sff
 {
-    class button : public interactable
+    class textButton : public interactable
     {
     protected:
         sf::Text text;
         sf::String textString;
+        
+         struct padding_struct{
+            float top;
+            float bottom;
+            float right;
+            float left;
+
+            void set(float value);
+         } padding;
 
         sf::RectangleShape buttonRect;
 
@@ -22,15 +31,37 @@ namespace sff
         void updatePointsOfInterest();
     public:
         //creates an empty button
-        button();
+        textButton();
         //creates a button
-        button(const char* displayText, sf::Font& font, unsigned int characterSize);
+        textButton(const char* displayText, sf::Font &font, unsigned int characterSize = 70);
+
+        //padding setters
+        void setPadding(float value);
+        void setPadding(float top, float bottom, float right, float left);
+        void setTopPadding(float value);
+        void setBottomPadding(float value);
+        void setRightPadding(float value);
+        void setLeftPadding(float value);
+
+        void setString(const char* str);
+
+        float getRotation();
+        void setRotation(float rotation);
+
+        void setFont(sf::Font& font);
+
+        sf::Text* getText();
+        sf::RectangleShape* getRectangle();
+
+        padding_struct getPadding();
 
         void setOnClick(std::function<void()>& onClick);
         void setOnHover(std::function<void()>& onHover);
 
-        void setPosition(sf::Vector2f& pos);
-        void setScale(sf::Vector2f& scale);
+        void setPosition(sf::Vector2f &pos);
+        void setPosition(float x, float y);
+
+        void setScale(sf::Vector2f &scale);
 
         void click();
         void hover();
@@ -39,4 +70,4 @@ namespace sff
     };
 }
 
-#endif //BUTTON_HPP
+#endif //TEXTBUTTON_HPP
