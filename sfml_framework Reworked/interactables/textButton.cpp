@@ -1,30 +1,50 @@
 #include "interactable.hpp"
 #include "textButton.hpp"
 
-namespace sff
-{
-    void button::updateRectanglePosition()
+namespace sff{
+
+    void textButton::padding_struct::set(float value) {
+        top = value;
+        right = value;
+        bottom = value;
+        left = value;
+    }
+
+    void textButton::updateRectanglePosition()
     {
         sf::FloatRect textBounds = text.getGlobalBounds();
 
-        //sf::Vector2f* pos = new sf::Vector2f;
-        //(*pos) = sf::Vector2f( textBounds.width, textBounds.height );
+        sf::Vector2f textBoundsDim(textBounds.width, textBounds.height);
+        sf::Vector2f totalPadding(padding.right+padding.left, padding.bottom+padding.top);
+        
+        buttonRect.setSize(textBoundsDim + totalPadding);
+        buttonRect.setOrigin(sf::Vector2f(padding.left, padding.top));
 
-        buttonRect.setSize(sf::Vector2f(textBounds.width, textBounds.height));
         buttonRect.setPosition(text.getPosition());
-        //buttonRect.setOrigin((sf::Vector2f){textBounds.width/2, textBounds.height/2});
+
+        updatePointsOfInterest();
     }
 
-    button::button()
+    textButton::textButton()
     {
         pointsOfInterest = nullptr;
         pointsCnt = 0;
 
+        text.setCharacterSize(70);
+
+        padding.set(8);
+
         onClick = nullptr;
         onHover = nullptr;
+        
+        buttonRect.setOutlineThickness(1.f);
+        buttonRect.setOutlineColor(sf::Color::White);
+
+        buttonRect.setFillColor(sf::Color::Transparent);
+        updateRectanglePosition();
     };
 
-    button::button(const char* displayText, sf::Font& font, unsigned int characterSize)
+    textButton::textButton(const char* displayText, sf::Font &font, unsigned int characterSize)
     {
         pointsOfInterest = nullptr;
         pointsCnt = 0;
@@ -35,28 +55,118 @@ namespace sff
         text.setFont(font);
         text.setCharacterSize(characterSize);
 
-        //for centering the text
-        //sf::FloatRect textBounds = text.getGlobalBounds();
-        //text.setOrigin((sf::Vector2f){textBounds.width/2, textBounds.height/2});
-        
+        padding.set(12);
+
+        /*
+        //centering the text
+        sf::FloatRect textBounds = text.getGlobalBounds();
+        text.setOrigin(sf::Vector2f(textBounds.width/2, textBounds.height/2));
+
+        //centering the rectangle
+        sf::FloatRect textButtonBounds = buttonRect.getGlobalBounds();
+        buttonRect.setOrigin(sf::Vector2f(textBounds.width / 2, textBounds.height / 2));
+        */
+
         onClick = nullptr;
         onHover = nullptr;
+        
+        buttonRect.setOutlineThickness(1.f);
+        buttonRect.setOutlineColor(sf::Color::White);
 
+        buttonRect.setFillColor(sf::Color::Transparent);
         updateRectanglePosition();
-        updatePointsOfInterest();
     };
 
-    void button::setOnClick(std::function<void()>& onClick)
+    void textButton::setPadding(float value){
+        padding.set(value);
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setPadding(float top, float bottom, float right, float left) {
+        padding = { top, bottom, right, left };
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setTopPadding(float value){
+        padding.top = value;
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setBottomPadding(float value){
+        padding.bottom = value;
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setRightPadding(float value){
+        padding.right = value;
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setLeftPadding(float value) {
+        padding.left = value;
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setString(const char* str)
+    {
+        textString = str;
+        text.setString(textString);
+
+        updateRectanglePosition();
+    }
+
+    float textButton::getRotation()
+    {
+        return text.getRotation();
+    }
+
+    void textButton::setRotation(float angle) 
+    {
+        angle = angle - (float)((int)angle / 360) * 360;
+
+        text.setRotation(angle);
+        buttonRect.setRotation(angle);
+        
+        updatePointsOfInterest();
+    }
+
+    void textButton::setFont(sf::Font& font)
+    {
+        text.setFont(font);
+    }
+
+
+    textButton::padding_struct textButton::getPadding() {
+        return padding;
+    }
+
+
+    sf::Text* textButton::getText(){
+        return &text;
+    }
+
+    sf::RectangleShape* textButton::getRectangle() {
+        return &buttonRect;
+    }
+
+
+    void textButton::setOnClick(std::function<void()>& onClick)
     {
         this->onClick = &onClick;
     }
 
-    void button::setOnHover(std::function<void()>& onHover)
+    void textButton::setOnHover(std::function<void()> &onHover)
     {
         this->onHover = &onHover;
     }
 
-    void button::setPosition(sf::Vector2f& pos) 
+    void textButton::setPosition(sf::Vector2f &pos) 
     {
         text.setPosition(pos);
         
@@ -64,7 +174,15 @@ namespace sff
         updatePointsOfInterest();
     }
 
-    void button::setScale(sf::Vector2f &scale)
+    void textButton::setPosition(float x, float y)
+    {
+        text.setPosition(x, y);
+
+        updateRectanglePosition();
+        updatePointsOfInterest();
+    }
+
+    void textButton::setScale(sf::Vector2f &scale)
     {
         text.setScale(scale);
         buttonRect.setScale(scale);
@@ -72,18 +190,19 @@ namespace sff
         updatePointsOfInterest();
     }
 
-
-    void button::click()
+    void textButton::click()
     {
-        (*onClick)();
+        if (onHover != nullptr)
+            (*onClick)();
     }
 
-    void button::hover()
+    void textButton::hover()
     {
-        (*onHover)();
+        if(onHover != nullptr)
+            (*onHover)();
     }
 
-    void button::updatePointsOfInterest()
+    void textButton::updatePointsOfInterest()
     {
         if (pointsOfInterest != nullptr)
             delete pointsOfInterest;
@@ -94,7 +213,7 @@ namespace sff
         pointsOfInterest[0] = buttonRect.getGlobalBounds();
     }
 
-    void button::render(sf::RenderWindow* win)
+    void textButton::render(sf::RenderWindow* win)
     {
         win->draw(text);
         win->draw(buttonRect);

@@ -13,7 +13,7 @@ namespace sff
 		else
 			ret = getLast(el->next);
 
-		return ret;//VS throws a warning here, but it's nothing to worry about
+		return ret;
 	}
 
 	menu::menu()
@@ -25,20 +25,23 @@ namespace sff
 
 	menu::~menu()
 	{
-		elements* placeHolder = el;
-		elements* deletable;
+		menu::elements* placeHolder = el;
+		menu::elements* deletable;
 
 		while (placeHolder != nullptr)
 		{
 			deletable = placeHolder;
 			placeHolder = placeHolder->next;
 
-			delete deletable->element;
-			delete deletable;
+			if (deletable->deleteOnSceneEnd)
+			{
+				delete deletable->element;
+				delete deletable;
+			}
 		}
 	}
 
-	void menu::add(interactable* element)
+	void menu::add(interactable* element, bool deleteOnSceneEnd)
 	{
 		elements* lastElement = getLast(el);
 
@@ -53,6 +56,8 @@ namespace sff
 		}
 
 		lastElement->element = element;
+		lastElement->deleteOnSceneEnd = deleteOnSceneEnd;
+
 		lastElement->next = nullptr;
 	}
 
@@ -66,6 +71,10 @@ namespace sff
 			{
 				switch (event.type)
 				{
+					case sf::Event::Closed:
+						win->close();
+						break;
+
 					case sf::Event::MouseMoved:
 					case sf::Event::MouseButtonPressed:
 					{
