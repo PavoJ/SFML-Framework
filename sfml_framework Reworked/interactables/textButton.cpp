@@ -43,6 +43,64 @@ namespace sff
         onHover = nullptr;
 
         updateRectanglePosition();
+    };
+
+    void textButton::setPadding(float value){
+        padding.set(value);
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setPadding(float top, float bottom, float right, float left) {
+        padding = { top, bottom, right, left };
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setTopPadding(float value){
+        padding.top = value;
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setBottomPadding(float value){
+        padding.bottom = value;
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setRightPadding(float value){
+        padding.right = value;
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setLeftPadding(float value) {
+        padding.left = value;
+
+        updateRectanglePosition();
+    }
+
+    void textButton::setString(const char* str)
+    {
+        textString = str;
+        text.setString(textString);
+
+        updateRectanglePosition();
+    }
+
+    float textButton::getRotation()
+    {
+        return text.getRotation();
+    }
+
+    void textButton::setRotation(float angle) 
+    {
+        angle = angle - (float)((int)angle / 360) * 360;
+
+        text.setRotation(angle);
+        buttonRect.setRotation(angle);
+        
         updatePointsOfInterest();
     };
 

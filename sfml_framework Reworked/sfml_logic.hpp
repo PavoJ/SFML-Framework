@@ -8,14 +8,19 @@
 
 namespace sff
 {
+
     //Superclass holding the concept of a menu: an interactable with active and passive elements.
     //Interactive elements are buttons, text, dialog boxes...
     //Passive elements are loading screens, scripts running in the background...
     class menu
     {
     protected:
-        typedef struct elements{ 
+        typedef struct elements {
             interactable* element;
+            //specifies wether or not the destructor destroys the element
+            //when the scene is done, reccomended to true if the element is
+            //allocated dynamically
+            bool deleteOnSceneEnd;
             struct elements* next;
         } elements;
         elements* el;
@@ -30,9 +35,9 @@ namespace sff
 
     public:
         menu();
-        ~menu();
+        virtual ~menu();
         
-        void add(interactable* element);
+        void add(interactable* element, bool deleteOnSceneEnd = false);
 
         void mainLoop(sf::RenderWindow* win);
 
