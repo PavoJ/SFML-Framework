@@ -44,7 +44,7 @@ namespace sff{
         updateRectanglePosition();
     };
 
-    textButton::textButton(const char* displayText, sf::Font &font, unsigned int characterSize = 70)
+    textButton::textButton(const char* displayText, sf::Font &font, unsigned int characterSize)
     {
         pointsOfInterest = nullptr;
         pointsCnt = 0;

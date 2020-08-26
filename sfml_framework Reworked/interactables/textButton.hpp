@@ -33,7 +33,7 @@ namespace sff
         //creates an empty button
         textButton();
         //creates a button
-        textButton(const char* displayText, sf::Font &font, unsigned int characterSize = 70);
+        textButton(const char* displayText, sf::Font &font, unsigned int characterSize = 70U);
 
         //padding setters
         void setPadding(float value);

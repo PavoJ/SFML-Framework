@@ -41,7 +41,7 @@ namespace sff
 		}
 	}
 
-	void menu::add(interactable* element, bool deleteOnSceneEnd = false)
+	void menu::add(interactable* element, bool deleteOnSceneEnd)
 	{
 		elements* lastElement = getLast(el);
 
