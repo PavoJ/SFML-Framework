@@ -1,6 +1,5 @@
-﻿  textButton.cpp
-  imageButton.cpp
-  interactable.cpp
+﻿  imageButton.cpp
+D:\Documents\C++\SFML-Framework\sfml_framework Reworked\interactables\imageButton.cpp(132,18): warning C4305: '*=': truncation from 'double' to 'float'
   menu.cpp
   Generating Code...
   sfml_framework Reworked.vcxproj -> D:\Documents\C++\SFML-Framework\x64\Debug\sfml_framework Reworked.lib

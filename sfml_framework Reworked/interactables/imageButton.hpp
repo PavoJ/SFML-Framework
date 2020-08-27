@@ -13,6 +13,7 @@ namespace sff
 	protected:
 		sf::Texture textureButton;
 		sf::RectangleShape *rectangleButton;
+
 		sf::RectangleShape backgroundButton;
 		
 		std::function<void()>* onClick;
@@ -24,21 +25,21 @@ namespace sff
 
 	public:
 
-		imageButton();//tested
-		imageButton(const char* titleImage, sf::Vector2f textureButtonPosition, sf::Vector2f textureButtonSize, bool drawBackground);//tested
-		~imageButton();//tested
+		imageButton();
+		imageButton(const char* imageTitle, sf::Vector2f textureButtonPosition, sf::Vector2f textureButtonSize, bool drawBackground);
+		~imageButton();
 
-		void setImage(const char* Image);//tested
-		void setPosition(sf::Vector2f& pos);//tested
-		void setTextureSize(sf::Vector2f& size);//tested
-		void setBackgroundSize(sf::Vector2f& size);//tested
-		void setRotation(float rotation);//tested
-		void setScale(sf::Vector2f& scale);//tested
-		void setColor(sf::Color color);//tested
-		void setImageOpacity(float opacity);//tested
-		void setDrawBackground(bool drawBackground);//tested
+		void setImage(const char* Image);
+		void setPosition(sf::Vector2f& pos);
+		void setTextureSize(sf::Vector2f& size);
+		void setBackgroundSize(sf::Vector2f& size);
+		void setRotation(float rotation);
+		void setScale(sf::Vector2f& scale);
+		void setColor(sf::Color color);
+		void setImageOpacity(float opacity);
+		void setDrawBackground(bool drawBackground);
 
-		void render(sf::RenderWindow* win);//tested
+		void render(sf::RenderWindow* win);
 
 
 		void setOnClick(std::function<void()>& onClick);
@@ -47,7 +48,7 @@ namespace sff
 		void click();
 		void hover();
 
-		void updatePointsOfInterest();//tested
+		void updatePointsOfInterest();
 		
 	};
 }

@@ -3,6 +3,7 @@
 
 #include"interactables/interactable.hpp"
 #include"interactables/textButton.hpp"
+#include"interactables/imageButton.hpp"
 
 #include<SFML\Graphics.hpp>
 

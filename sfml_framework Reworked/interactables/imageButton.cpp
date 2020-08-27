@@ -17,7 +17,7 @@ namespace sff
 		draw = true;
 	}
 
-	imageButton::imageButton(const char* titleImage, sf::Vector2f textureButtonPosition, sf::Vector2f textureButtonSize, bool drawBackground = true)
+	imageButton::imageButton(const char* imageTitle, sf::Vector2f textureButtonPosition, sf::Vector2f textureButtonSize, bool drawBackground = true)
 	{
 		onClick = nullptr;
 		onHover = nullptr;
@@ -32,8 +32,8 @@ namespace sff
 
 		rectangleButton = new sf::RectangleShape;
 
-		rect.rectSize.x = textureButtonSize.x; rect.rectSize.y = textureButtonSize.y;
-		rect.rectPos.x = textureButtonPosition.x; rect.rectPos.y = textureButtonPosition.y;
+		rect.rectSize = textureButtonSize;
+		rect.rectPos = textureButtonPosition;
 		
 		rectangleButton->setPosition(textureButtonPosition);
 		rectangleButton->setSize(textureButtonSize);
@@ -44,7 +44,7 @@ namespace sff
 		rectangleButton->setOrigin(textureButtonSize.x / 2, textureButtonSize.y / 2);
 		backgroundButton.setOrigin(textureButtonSize.x / 2, textureButtonSize.y / 2);
 
-		textureButton.loadFromFile(titleImage);
+		textureButton.loadFromFile(imageTitle);
 		rectangleButton->setTexture(&textureButton);
 	}
 
@@ -58,19 +58,18 @@ namespace sff
 	{	
 		delete rectangleButton;
 		rectangleButton = new sf::RectangleShape;
-
+		
 		setPosition(rect.rectPos);
 		setTextureSize(rect.rectSize);
-		rectangleButton->setOrigin(rect.rectSize.x / 2, rect.rectSize.y / 2);
-
+		rectangleButton->setOrigin(rect.rectSize / 2.f);
+		
 		textureButton.loadFromFile(Image);
 		rectangleButton->setTexture(&textureButton);
 	}
 
 	void imageButton::setPosition(sf::Vector2f& pos)
 	{
-		rect.rectPos.x = pos.x;
-		rect.rectPos.y = pos.y;
+		rect.rectPos = pos;
 
 		rectangleButton->setPosition(pos);
 		backgroundButton.setPosition(pos);
@@ -78,8 +77,7 @@ namespace sff
 
 	void imageButton::setTextureSize(sf::Vector2f& size)
 	{
-		rect.rectSize.x = size.x;
-		rect.rectSize.y = size.y;
+		rect.rectSize = size;
 
 		rectangleButton->setSize(size);
 		rectangleButton->setOrigin(size.x / 2, size.y / 2);
@@ -87,8 +85,8 @@ namespace sff
 		if (equalize)
 		{
 			backgroundButton.setSize(size);
-			backgroundButton.setOrigin(size.x / 2, size.y / 2);
-
+			backgroundButton.setOrigin(size / 2.f);
+			
 			updatePointsOfInterest();
 			equalize = false;
 		}	
@@ -97,14 +95,14 @@ namespace sff
 	void imageButton::setBackgroundSize(sf::Vector2f& size)
 	{
 		backgroundButton.setSize(size);
-		backgroundButton.setOrigin(size.x / 2, size.y / 2);
+		backgroundButton.setOrigin(size / 2.f);
 
 		updatePointsOfInterest();
 
 		if (equalize)
 		{
 			rectangleButton->setSize(size);
-			rectangleButton->setOrigin(size.x / 2, size.y / 2);
+			rectangleButton->setOrigin(size / 2.f);
 
 			equalize = false;
 		}
