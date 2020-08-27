@@ -36,14 +36,16 @@ namespace sff
 		void setRotation(float rotation);
 		void setScale(sf::Vector2f& scale);
 		void setColor(sf::Color color);
-		void setImageOpacity(float opacity);
 		void setDrawBackground(bool drawBackground);
 
 		void render(sf::RenderWindow* win);
 
-
 		void setOnClick(std::function<void()>& onClick);
 		void setOnHover(std::function<void()>& onHover);
+
+		sf::Texture* getTexture();
+		sf::RectangleShape* getTextureRectangle();
+		sf::RectangleShape* getBackgroundTexture();
 
 		void click();
 		void hover();

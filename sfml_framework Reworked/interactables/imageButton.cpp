@@ -41,8 +41,8 @@ namespace sff
 		backgroundButton.setPosition(textureButtonPosition);
 		backgroundButton.setSize(textureButtonSize);
 
-		rectangleButton->setOrigin(textureButtonSize.x / 2, textureButtonSize.y / 2);
-		backgroundButton.setOrigin(textureButtonSize.x / 2, textureButtonSize.y / 2);
+		rectangleButton->setOrigin(textureButtonSize / 2.f);
+		backgroundButton.setOrigin(textureButtonSize / 2.f);
 
 		textureButton.loadFromFile(imageTitle);
 		rectangleButton->setTexture(&textureButton);
@@ -80,7 +80,7 @@ namespace sff
 		rect.rectSize = size;
 
 		rectangleButton->setSize(size);
-		rectangleButton->setOrigin(size.x / 2, size.y / 2);
+		rectangleButton->setOrigin(size / 2.f);
 
 		if (equalize)
 		{
@@ -127,13 +127,6 @@ namespace sff
 		updatePointsOfInterest();
 	}
 
-	void imageButton::setImageOpacity(float opacity)
-	{
-		opacity *= 2.55;
-		rectangleButton->setFillColor(sf::Color(255, 255, 255, (int)opacity));
-	}
-
-
 	void imageButton::setDrawBackground(bool drawBackground)
 	{
 		draw = drawBackground;
@@ -160,6 +153,22 @@ namespace sff
 	{
 		if (onHover != nullptr)
 			(*onHover)();
+	}
+
+
+	sf::Texture* imageButton::getTexture()
+	{
+		return &textureButton;
+	}
+
+	sf::RectangleShape* imageButton::getTextureRectangle()
+	{
+		return rectangleButton;
+	}
+
+	sf::RectangleShape* imageButton::getBackgroundTexture()
+	{
+		return &backgroundButton;
 	}
 
 
