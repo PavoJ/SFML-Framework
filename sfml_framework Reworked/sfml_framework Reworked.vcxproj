@@ -171,13 +171,17 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="animation.cpp" />
+    <ClCompile Include="interactables\sprite.cpp" />
     <ClCompile Include="interactables\textButton.cpp" />
     <ClCompile Include="interactables\imageButton.cpp" />
     <ClCompile Include="interactables\interactable.cpp" />
     <ClCompile Include="menu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation.hpp" />
     <ClInclude Include="interactables\imageButton.hpp" />
+    <ClInclude Include="interactables\sprite.hpp" />
     <ClInclude Include="interactables\textButton.hpp" />
     <ClInclude Include="interactables\interactable.hpp" />
     <ClInclude Include="sfml_logic.hpp" />

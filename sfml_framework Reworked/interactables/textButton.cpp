@@ -204,11 +204,12 @@ namespace sff{
 
     void textButton::updatePointsOfInterest()
     {
-        if (pointsOfInterest != nullptr)
-            delete pointsOfInterest;
-
-        pointsOfInterest = new sf::FloatRect;
-        pointsCnt = 1;
+        if (pointsOfInterest == nullptr)
+        {
+            pointsOfInterest = new sf::FloatRect;
+            pointsCnt = 1;
+        }
+            
 
         pointsOfInterest[0] = buttonRect.getGlobalBounds();
     }

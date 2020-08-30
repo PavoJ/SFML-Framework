@@ -19,6 +19,12 @@
     <Filter Include="Header Files\interactables">
       <UniqueIdentifier>{d0b3a22c-1436-4510-bba2-8d414bf63ed5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\interactables\sprite">
+      <UniqueIdentifier>{903ad21e-3a13-4b80-b1d2-f443e83d23f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\interactables\sprite">
+      <UniqueIdentifier>{023571a2-b93e-47ef-a454-c0da132d3771}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="menu.cpp">
@@ -33,6 +39,12 @@
     <ClCompile Include="interactables\textButton.cpp">
       <Filter>Source Files\interactables</Filter>
     </ClCompile>
+    <ClCompile Include="animation.cpp">
+      <Filter>Source Files\interactables\sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="interactables\sprite.cpp">
+      <Filter>Source Files\interactables\sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sfml_logic.hpp">
@@ -46,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="interactables\imageButton.hpp">
       <Filter>Header Files\interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="interactables\sprite.hpp">
+      <Filter>Header Files\interactables\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="animation.hpp">
+      <Filter>Header Files\interactables\sprite</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
