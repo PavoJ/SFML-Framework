@@ -2,8 +2,7 @@
 #define TEXTBUTTON_HPP
 
 #include "interactable.hpp"
-#include <SFML\Graphics.hpp>
-#include <functional>
+#include "stdafx.hpp"
 
 namespace sff
 {

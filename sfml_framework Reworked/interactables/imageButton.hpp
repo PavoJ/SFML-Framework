@@ -2,8 +2,7 @@
 #define IMAGEBUTTON_HPP
 
 #include "interactable.hpp"
-#include <SFML\Graphics.hpp>
-#include <functional>
+#include "stdafx.hpp"
 
 //da fare -> set image opacity
 namespace sff

@@ -39,7 +39,7 @@
     <ClCompile Include="interactables\textButton.cpp">
       <Filter>Source Files\interactables</Filter>
     </ClCompile>
-    <ClCompile Include="animation.cpp">
+    <ClCompile Include="interactables\animation.cpp">
       <Filter>Source Files\interactables\sprite</Filter>
     </ClCompile>
     <ClCompile Include="interactables\sprite.cpp">
@@ -59,10 +59,13 @@
     <ClInclude Include="interactables\imageButton.hpp">
       <Filter>Header Files\interactables</Filter>
     </ClInclude>
-    <ClInclude Include="interactables\sprite.hpp">
+    <ClInclude Include="stdafx.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="interactables\animation.hpp">
       <Filter>Header Files\interactables\sprite</Filter>
     </ClInclude>
-    <ClInclude Include="animation.hpp">
+    <ClInclude Include="interactables\sprite.hpp">
       <Filter>Header Files\interactables\sprite</Filter>
     </ClInclude>
   </ItemGroup>

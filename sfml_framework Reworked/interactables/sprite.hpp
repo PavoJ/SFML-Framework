@@ -2,7 +2,7 @@
 #define SPRITE_HPP
 
 #include "interactable.hpp"
-#include <SFML\Graphics.hpp>
+#include "stdafx.hpp"
 #include <functional>
 
 namespace sff

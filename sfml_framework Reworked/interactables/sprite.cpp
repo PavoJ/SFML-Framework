@@ -1,10 +1,5 @@
+#include "stdafx.hpp"
 #include"sprite.hpp"
-
-enum minchia
-{
-	OK		= 0,
-	CANCEL	= 0 << 1
-};
 
 namespace sff
 {

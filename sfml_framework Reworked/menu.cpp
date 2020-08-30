@@ -1,3 +1,4 @@
+#include "stdafx.hpp"
 #include"sfml_logic.hpp"
 
 namespace sff

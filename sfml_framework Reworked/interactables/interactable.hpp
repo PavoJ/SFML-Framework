@@ -1,7 +1,7 @@
 #ifndef INTERACTABLE_HPP
 #define INTERACTABLE_HPP
 
-#include<SFML\Graphics.hpp>
+#include "stdafx.hpp"
 
 namespace sff
 {

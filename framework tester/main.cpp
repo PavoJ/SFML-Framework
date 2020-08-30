@@ -1,8 +1,5 @@
-#include<SFML/Graphics.hpp>
-#include<sfml_logic.hpp>
-#include<functional>
-
-#include<iostream>
+#include "stdafx.hpp"
+#include "sfml_logic.hpp"
 
 sf::Font* getDefaultFont()
 {
@@ -23,7 +20,7 @@ class mainMenu : public sff::menu
 {
 protected:
 	virtual void additionalInputs(sf::Event::EventType eType) {};
-	
+
 	std::function<void()> heyButtonOnHover;
 	std::function<void()> heyButtonOnClick;
 public:

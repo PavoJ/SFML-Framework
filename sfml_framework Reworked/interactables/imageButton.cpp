@@ -1,5 +1,5 @@
+#include "stdafx.hpp"
 #include "imageButton.hpp"
-#include <iostream>
 
 namespace sff
 {

@@ -5,7 +5,7 @@
 #include"interactables/textButton.hpp"
 #include"interactables/imageButton.hpp"
 
-#include<SFML\Graphics.hpp>
+#include "stdafx.hpp"
 
 namespace sff
 {
