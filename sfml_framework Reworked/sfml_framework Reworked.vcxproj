@@ -260,6 +260,7 @@
     <ClCompile Include="interactables\textButton.cpp" />
     <ClCompile Include="interactables\imageButton.cpp" />
     <ClCompile Include="interactables\interactable.cpp" />
+    <ClCompile Include="linked_list.cpp" />
     <ClCompile Include="menu.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -268,6 +269,7 @@
     <ClInclude Include="interactables\sprite.hpp" />
     <ClInclude Include="interactables\textButton.hpp" />
     <ClInclude Include="interactables\interactable.hpp" />
+    <ClInclude Include="linked_list.hpp" />
     <ClInclude Include="sfml_logic.hpp" />
     <ClInclude Include="stdafx.hpp" />
   </ItemGroup>

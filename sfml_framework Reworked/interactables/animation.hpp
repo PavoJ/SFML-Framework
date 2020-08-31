@@ -14,7 +14,7 @@ namespace sff
 		const sf::Vector2i cellDim;
 		sf::IntRect sheetRect;
 		
-		//linked list containing all the necessary 
+		//linked list containing all the performable animations
 		struct animations {
 			struct{
 				//frame that starts the animation located in the spritesheet,
@@ -25,9 +25,10 @@ namespace sff
 				//time between a frame transition
 				float delta;
 			} animation;
-			sf::Vector2i
+			std::string name;
+
 			animations* next;
-		};
+		} *anim;
 		
 
 	public:
