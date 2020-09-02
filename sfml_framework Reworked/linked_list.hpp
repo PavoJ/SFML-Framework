@@ -9,18 +9,21 @@ namespace sff
 	class linked_list
 	{
 	private:
-		struct data{
+		struct data_list{
 			T val;
-			data* next;
+			data_list* next;
 		} *start, *end;
-		int count;
+
+		int length;
 	public:
+		linked_list();
+
 		//insertion functions
-		bool insert(int position, T data);
-		bool append(T data);
+		void insert(int position, T data);
+		void append(T data);
 
 		//get the linked list's length
-		int getCount();
+		int getLength();
 	};
 }
 
