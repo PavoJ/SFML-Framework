@@ -1,3 +1,4 @@
 ﻿  main.cpp
 D:\Documents\C++\SFML-Framework\framework tester\main.cpp(37,17): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  LINK : D:\Documents\C++\SFML-Framework\x64\Debug\framework tester.exe not found or not built by the last incremental link; performing full link
   framework tester.vcxproj -> D:\Documents\C++\SFML-Framework\x64\Debug\framework tester.exe

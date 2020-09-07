@@ -1,11 +1,11 @@
 #ifndef MENU_HPP
 #define MENU_HPP
 
+#include "stdafx.hpp"
+
 #include"interactables/interactable.hpp"
 #include"interactables/textButton.hpp"
 #include"interactables/imageButton.hpp"
-
-#include "stdafx.hpp"
 
 namespace sff
 {

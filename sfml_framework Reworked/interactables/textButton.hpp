@@ -1,8 +1,8 @@
 #ifndef TEXTBUTTON_HPP
 #define TEXTBUTTON_HPP
 
-#include "interactable.hpp"
 #include "stdafx.hpp"
+#include "interactable.hpp"
 
 namespace sff
 {

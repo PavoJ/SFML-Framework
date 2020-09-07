@@ -10,7 +10,7 @@ namespace sff
 			pointsOfInterest = new sf::FloatRect;
 			pointsCnt = 1;
 		}
-			
+		
 		
 		(*pointsOfInterest) = sfSprite.getGlobalBounds();
 	}
