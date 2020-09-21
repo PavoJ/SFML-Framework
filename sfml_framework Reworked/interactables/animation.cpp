@@ -3,12 +3,16 @@
 
 namespace sff
 {
-	anim::anim(int startPosition, int frames, float delta, std::string name): 
-		startPosition(startPosition),
-		frames(frames),
-		delta(delta),
-		name(name)
+	anim::anim(int startPosition, int frames, float delta, std::string name) : startPosition(startPosition),
+																				frames(frames),
+																				delta(delta),
+																				name(name)
 	{}
+	
+	void animation::onUpdate()
+	{
+		update();
+	}
 
 	void animation::calculateSpriteSheetGrid()
 	{
@@ -18,13 +22,6 @@ namespace sff
 		spriteSheetGrid.y = (sSDim.y - startPos.y) / cellDim.y;
 	}
 
-	animation::animation()
-	{
-		animList.reserve(3);
-		currentState = 0;
-		animIndex = 0;
-	}
-
 	animation::animation(const char* textureDir, sf::IntRect startRect) : 
 		startPos{sf::Vector2i(startRect.left,	startRect.top	)},
 		cellDim	{sf::Vector2i(startRect.width,	startRect.height)}
@@ -32,15 +29,20 @@ namespace sff
 		animList.reserve(3);
 		currentState = 0;//idle
 		animIndex = 0;
-		std::cout << animList.size();
+
+		sheetRect = startRect;
 
 		spriteSheet.loadFromFile(textureDir);
 		calculateSpriteSheetGrid();
 	}
 	
-	void animation::createState(anim& state)
+	int animation::createState(anim& state)
 	{
-		animList[animList.size()] = state;
+		int animSize = animList.size();
+
+		animList.emplace_back(state);
+
+		return animSize;
 	}
 
 	bool animation::setState(int state)
@@ -87,7 +89,7 @@ namespace sff
 		}
 
 		sheetRect.left = startPos.x + (sheetRectIndex.x * cellDim.x);
-		sheetRect.top = startPos.y + (sheetRectIndex.y * cellDim.y);
+		sheetRect.top  = startPos.y + (sheetRectIndex.y * cellDim.y);
 
 		if ((animIndex++) == animList[currentState].frames)
 		{

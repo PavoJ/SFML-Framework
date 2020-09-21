@@ -7,19 +7,19 @@
 
 namespace sff
 {
-	class sprite : public interactable, public animation
+	class sprite : public drawable, public animation
 	{
 	protected:
 		sf::Sprite sfSprite;
-
-		void updatePointsOfInterest();
 	public:
 		sprite(const char* spriteSheetDir, sf::IntRect startRect);
 
+		void setPosition(sf::Vector2f& pos);
+		void setScale(sf::Vector2f& scale);
+		void render(sf::RenderWindow* win);
+
 		sf::Sprite* getSprite();
 		sf::Texture* getTexture();
-
-
 	};
 }
 

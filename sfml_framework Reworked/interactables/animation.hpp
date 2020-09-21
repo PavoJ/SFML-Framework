@@ -2,6 +2,7 @@
 #define ANIMATION_HPP
 
 #include "stdafx.hpp"
+#include "../updateable.hpp"
 
 namespace sff
 {
@@ -22,7 +23,7 @@ namespace sff
 		anim(int startPosition, int frames, float delta, std::string name);
 	};
 
-	class animation
+	class animation : virtual public updateable
 	{
 	protected:
 		//spriteSheet containing all the frames required for the different animations
@@ -46,11 +47,12 @@ namespace sff
 		int animIndex;//frame of the current state
 		int currentState;//current state
 
+		void onUpdate();
+
 	public:
-		animation();
 		animation(const char* textureDir, sf::IntRect startPos);
 
-		void createState(anim& state);
+		int createState(anim& state);
 
 		bool setState(int state);
 		bool setState(std::string& name);

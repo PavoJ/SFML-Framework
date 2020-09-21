@@ -123,6 +123,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -146,6 +147,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.5.1\include;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -171,6 +173,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.5.1\include;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -196,6 +199,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.5.1\include</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -217,6 +221,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.5.1\include;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -240,6 +245,7 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
       <PrecompiledHeaderFile>stdafx.hpp</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(SolutionDir)\SFML-2.5.1\include;$(ProjectDir)\</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -261,15 +267,18 @@
     <ClCompile Include="interactables\imageButton.cpp" />
     <ClCompile Include="interactables\interactable.cpp" />
     <ClCompile Include="menu.cpp" />
+    <ClCompile Include="updateable.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="interactables\animation.hpp" />
+    <ClInclude Include="interactables\drawable.hpp" />
     <ClInclude Include="interactables\imageButton.hpp" />
     <ClInclude Include="interactables\sprite.hpp" />
     <ClInclude Include="interactables\textButton.hpp" />
     <ClInclude Include="interactables\interactable.hpp" />
     <ClInclude Include="sfml_logic.hpp" />
     <ClInclude Include="stdafx.hpp" />
+    <ClInclude Include="updateable.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

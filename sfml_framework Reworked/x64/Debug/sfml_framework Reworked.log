@@ -1,6 +1,4 @@
 ﻿  animation.cpp
-  imageButton.cpp
+D:\Documents\C++\SFML-Framework\sfml_framework Reworked\interactables\animation.cpp(41,33): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
   sprite.cpp
-  textButton.cpp
-  menu.cpp
   sfml_framework Reworked.vcxproj -> D:\Documents\C++\SFML-Framework\x64\Debug\sfml_framework Reworked.lib

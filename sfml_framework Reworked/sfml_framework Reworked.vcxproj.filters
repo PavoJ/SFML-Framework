@@ -45,6 +45,9 @@
     <ClCompile Include="interactables\sprite.cpp">
       <Filter>Source Files\interactables\sprite</Filter>
     </ClCompile>
+    <ClCompile Include="updateable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sfml_logic.hpp">
@@ -67,6 +70,12 @@
     </ClInclude>
     <ClInclude Include="interactables\sprite.hpp">
       <Filter>Header Files\interactables\sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="interactables\drawable.hpp">
+      <Filter>Header Files\interactables</Filter>
+    </ClInclude>
+    <ClInclude Include="updateable.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

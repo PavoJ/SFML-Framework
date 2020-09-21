@@ -1,6 +1,8 @@
 #include "stdafx.hpp"
 #include "sfml_logic.hpp"
 
+
+
 sf::Font* getDefaultFont()
 {
 	static bool setup;
@@ -25,6 +27,23 @@ protected:
 	std::function<void()> heyButtonOnClick;
 public:
 	mainMenu() {
+		sff::sprite* mainChar = new sff::sprite("herochar_run_anim_strip_6.png", sf::IntRect(0,0,16,16));
+		
+		sf::Vector2f mainCharScale(10.f, 10.f);
+		mainChar->setScale(mainCharScale);
+
+		sf::Vector2f mainCharPos(500.f, 500.f);
+		mainChar->setPosition(mainCharPos);
+
+		sff::anim walkingAnim(0, 6, 0.3f, "walking");
+		mainChar->createState(walkingAnim);
+
+		std::string walkingName("asd");
+		mainChar->setState(0);
+
+		this->add(mainChar, false, sff::type::sffUpdatable);
+
+		/*
 		sff::textButton* heyButton = new sff::textButton("hey", *getDefaultFont());
 		heyButton->setPosition(1000.f, 500.f);
 		
@@ -39,7 +58,7 @@ public:
 		};
 		heyButton->setOnClick(heyButtonOnClick);
 
-		this->add(heyButton, true);
+		this->add(heyButton, true);*/
 	}
 };
 
@@ -49,4 +68,5 @@ int main()
 
 	mainMenu mainMenuInstance;
 	mainMenuInstance.mainLoop(&win);
+
 }

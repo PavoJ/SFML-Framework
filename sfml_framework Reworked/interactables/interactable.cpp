@@ -12,7 +12,7 @@ namespace sff
         {
             if (pointsOfInterest[i].contains(point))
                 ret = true;
-
+            
             i++;
         }
 

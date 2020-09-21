@@ -1,25 +1,27 @@
 #include "stdafx.hpp"
-#include"sprite.hpp"
+#include "sprite.hpp"
 
 namespace sff
 {
-	void sprite::updatePointsOfInterest() 
+	sprite::sprite(const char* spriteSheetDir, sf::IntRect cell) : animation{spriteSheetDir, cell}
 	{
-		if (pointsOfInterest == nullptr)
-		{
-			pointsOfInterest = new sf::FloatRect;
-			pointsCnt = 1;
-		}
-		
-		
-		(*pointsOfInterest) = sfSprite.getGlobalBounds();
+		sfSprite.setTexture(spriteSheet);
+		sfSprite.setTextureRect(sheetRect);
 	}
 
-	sprite::sprite(const char* spriteSheetDir, sf::IntRect giorgio)
+	void sprite::setPosition(sf::Vector2f& pos)
 	{
-		spriteSheet.loadFromFile(spriteSheetDir);
+		sfSprite.setPosition(pos);
+	}
 
-		sfSprite.setTexture(spriteSheet);
+	void sprite::setScale(sf::Vector2f& scale)
+	{
+		sfSprite.setScale(scale);
+	}
+
+	void sprite::render(sf::RenderWindow* win)
+	{
+		win->draw(sfSprite);
 	}
 
 	sf::Sprite* sprite::getSprite()
