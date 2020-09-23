@@ -7,10 +7,12 @@
 
 namespace sff
 {
-	class sprite : public drawable, public animation
+	class sprite : public drawable, public animation, virtual public updateable
 	{
 	protected:
 		sf::Sprite sfSprite;
+
+		void onUpdate();
 	public:
 		sprite(const char* spriteSheetDir, sf::IntRect startRect);
 

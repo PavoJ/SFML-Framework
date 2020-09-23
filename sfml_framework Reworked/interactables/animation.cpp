@@ -8,11 +8,6 @@ namespace sff
 																				delta(delta),
 																				name(name)
 	{}
-	
-	void animation::onUpdate()
-	{
-		update();
-	}
 
 	void animation::calculateSpriteSheetGrid()
 	{
@@ -24,7 +19,8 @@ namespace sff
 
 	animation::animation(const char* textureDir, sf::IntRect startRect) : 
 		startPos{sf::Vector2i(startRect.left,	startRect.top	)},
-		cellDim	{sf::Vector2i(startRect.width,	startRect.height)}
+		cellDim	{sf::Vector2i(startRect.width,	startRect.height)},
+		updateable{}
 	{
 		animList.reserve(3);
 		currentState = 0;//idle
@@ -48,7 +44,15 @@ namespace sff
 	bool animation::setState(int state)
 	{
 		animIndex = 0;
-		currentState = state;
+		bool ret = false;
+		
+		if (state < animList.size())
+		{
+			currentState = state;
+			ret = true;
+
+			setUpdateTime((clock_t)(animList[currentState].delta * (float)CLOCKS_PER_SEC));
+		}
 
 		return true;
 	}
@@ -68,15 +72,20 @@ namespace sff
 				success = true;
 				animIndex = 0;
 				currentState = stateIndex;
+
+				setUpdateTime((clock_t)(animList[currentState].delta * (float)CLOCKS_PER_SEC));
 			}
 
 			stateIndex++;
 		}
 
+		if (!success)
+			currentState = 0;
+
 		return success;
 	}
 
-	void animation::update()
+	void animation::advanceAnimation()
 	{
 		if ((sheetRectIndex.x++) >= spriteSheetGrid.x)
 		{
@@ -87,10 +96,10 @@ namespace sff
 				sheetRectIndex.y = 0;
 			}
 		}
-
+		
 		sheetRect.left = startPos.x + (sheetRectIndex.x * cellDim.x);
 		sheetRect.top  = startPos.y + (sheetRectIndex.y * cellDim.y);
-
+		
 		if ((animIndex++) == animList[currentState].frames)
 		{
 			animIndex = 0;

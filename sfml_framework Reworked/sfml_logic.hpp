@@ -15,16 +15,16 @@ namespace sff
     {
         enum
         {
-            sffInteractable = 1,
-            sffDrawable     = 1 << 1,
-            sffUpdatable    = 1 << 2,
+            sffDrawable     = 1,
+            sffUpdatable    = 1 << 1,
+            sffInteractable =(1 << 2) | sffDrawable,
             sfDrawable      = 1 << 3
         };
 
     }
-
+    
     struct elements {
-        
+
         union {
             drawable* sffDraw;
             sf::Drawable* sfDraw;
@@ -35,6 +35,7 @@ namespace sff
         //when the scene is done, reccomended to true if the element is
         //allocated dynamically
         bool deleteOnSceneEnd;
+
         struct elements* next;
     };
 

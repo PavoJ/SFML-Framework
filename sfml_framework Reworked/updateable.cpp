@@ -7,12 +7,12 @@ namespace sff
 
 	updateable::updateable() : updateTime( 0 )
 	{
-		timeCounter = clock();
+		referenceTime = std::clock();
 	}
 
 	updateable::updateable(clock_t updateTime) : updateTime( updateTime )
 	{
-		timeCounter = clock();
+		referenceTime = std::clock();
 	}
 
 	clock_t& updateable::getUpdateTime()
@@ -27,9 +27,10 @@ namespace sff
 
 	void updateable::update()
 	{
-		if (timeCounter >= updateTime)
+		clock_t timePassed = std::clock() - referenceTime;
+		if (timePassed >= updateTime)
 		{
-			timeCounter = clock();
+			referenceTime = std::clock();
 			onUpdate();
 		}
 	}

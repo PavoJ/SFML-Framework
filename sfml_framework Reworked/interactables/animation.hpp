@@ -47,7 +47,9 @@ namespace sff
 		int animIndex;//frame of the current state
 		int currentState;//current state
 
-		void onUpdate();
+		void advanceAnimation();
+
+		virtual void onUpdate() = 0;
 
 	public:
 		animation(const char* textureDir, sf::IntRect startPos);
@@ -56,8 +58,6 @@ namespace sff
 
 		bool setState(int state);
 		bool setState(std::string& name);
-
-		void update();
 	};
 }
 

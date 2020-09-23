@@ -3,9 +3,17 @@
 
 namespace sff
 {
-	sprite::sprite(const char* spriteSheetDir, sf::IntRect cell) : animation{spriteSheetDir, cell}
+	sprite::sprite(const char* spriteSheetDir, sf::IntRect cell) : animation{ spriteSheetDir, cell }, updateable{}
 	{
 		sfSprite.setTexture(spriteSheet);
+		sfSprite.setTextureRect(sheetRect);
+
+		std::cout << getUpdateTime();
+	}
+
+	void sprite::onUpdate()
+	{
+		advanceAnimation();
 		sfSprite.setTextureRect(sheetRect);
 	}
 

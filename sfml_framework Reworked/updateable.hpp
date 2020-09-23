@@ -7,9 +7,9 @@ namespace sff
 {
 	class updateable
 	{
-	protected:
+	private:
 		clock_t updateTime;
-		clock_t timeCounter;
+		clock_t referenceTime;
 
 		virtual void onUpdate() = 0;
 	public:

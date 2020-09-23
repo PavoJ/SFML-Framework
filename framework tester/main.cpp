@@ -25,9 +25,12 @@ protected:
 
 	std::function<void()> heyButtonOnHover;
 	std::function<void()> heyButtonOnClick;
+
+	sff::sprite* mainChar;
 public:
+
 	mainMenu() {
-		sff::sprite* mainChar = new sff::sprite("herochar_run_anim_strip_6.png", sf::IntRect(0,0,16,16));
+		mainChar = new sff::sprite("herochar_run_anim_strip_6.png", sf::IntRect(0,0,16,16));
 		
 		sf::Vector2f mainCharScale(10.f, 10.f);
 		mainChar->setScale(mainCharScale);
@@ -38,8 +41,7 @@ public:
 		sff::anim walkingAnim(0, 6, 0.3f, "walking");
 		mainChar->createState(walkingAnim);
 
-		std::string walkingName("asd");
-		mainChar->setState(0);
+		std::cout << mainChar->setState(0);
 
 		this->add(mainChar, false, sff::type::sffUpdatable);
 
@@ -68,5 +70,4 @@ int main()
 
 	mainMenu mainMenuInstance;
 	mainMenuInstance.mainLoop(&win);
-
 }

@@ -20,7 +20,7 @@ namespace sff
 	menu::menu()
 	{
 		tickTime = CLOCKS_PER_SEC / (long)10;
-		elapsedTime = clock();
+		elapsedTime = std::clock();
 		el = nullptr;
 		menuIsOpen = true;
 		clearColor = sf::Color::Black;
@@ -78,7 +78,7 @@ namespace sff
 	void menu::add(interactable* element, bool deleteOnSceneEnd, sf::Uint32 additionalTypes)
 	{
 		elements* lastElement = (elements*)genericAdd<interactable*>(deleteOnSceneEnd);
-		lastElement->elementType = type::sffInteractable | type::sffDrawable | additionalTypes;
+		lastElement->elementType = type::sffInteractable | additionalTypes;
 		lastElement->element.sffDraw = (drawable*)element;
 	}
 
@@ -94,7 +94,7 @@ namespace sff
 
 	void menu::mainLoop(sf::RenderWindow* win)
 	{
-		elapsedTime = clock();
+		elapsedTime = std::clock();
 		while (win->isOpen() && menuIsOpen)
 		{
 			//event handler, generalized by the pure function inputHandler
@@ -142,7 +142,7 @@ namespace sff
 			Update();
 			if (elapsedTime > tickTime)
 			{
-				elapsedTime = clock();
+				elapsedTime = std::clock();
 				FixedUpdate();
 			}
 
