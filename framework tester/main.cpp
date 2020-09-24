@@ -25,7 +25,7 @@ protected:
 
 	std::function<void()> heyButtonOnHover;
 	std::function<void()> heyButtonOnClick;
-
+	
 	sff::sprite* mainChar;
 public:
 
@@ -38,12 +38,14 @@ public:
 		sf::Vector2f mainCharPos(500.f, 500.f);
 		mainChar->setPosition(mainCharPos);
 
-		sff::anim walkingAnim(0, 6, 0.3f, "walking");
+		sff::anim walkingAnim(0, 5, 0.15f, "walking");
 		mainChar->createState(walkingAnim);
+		
 
 		std::cout << mainChar->setState(0);
 
-		this->add(mainChar, false, sff::type::sffUpdatable);
+		this->addUpdate(mainChar);
+		this->add(mainChar);
 
 		/*
 		sff::textButton* heyButton = new sff::textButton("hey", *getDefaultFont());
@@ -62,7 +64,13 @@ public:
 
 		this->add(heyButton, true);*/
 	}
+
+	~mainMenu()
+	{
+		delete mainChar;
+	}
 };
+
 
 int main()
 {

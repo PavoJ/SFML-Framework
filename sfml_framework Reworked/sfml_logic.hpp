@@ -9,34 +9,24 @@
 #include"interactables/imageButton.hpp"
 #include"interactables/sprite.hpp"
 
+#include"linked_list.hpp"
+#include"linked_list.cpp"
+
 namespace sff
 {
-    namespace type
+    enum class type
     {
-        enum
-        {
-            sffDrawable     = 1,
-            sffUpdatable    = 1 << 1,
-            sffInteractable =(1 << 2) | sffDrawable,
-            sfDrawable      = 1 << 3
-        };
+        sffDrawable = 0,
+        sfDrawable
+    };
 
-    }
-    
-    struct elements {
+    struct element {
+        enum class type elType;
 
-        union {
+        union drawables {
             drawable* sffDraw;
             sf::Drawable* sfDraw;
-        } element;
-        sf::Uint32 elementType;
-
-        //specifies wether or not the destructor destroys the element
-        //when the scene is done, reccomended to true if the element is
-        //allocated dynamically
-        bool deleteOnSceneEnd;
-
-        struct elements* next;
+        } toDraw;
     };
 
     //Superclass holding the concept of a menu: an interactable with active and passive elements.
@@ -45,18 +35,18 @@ namespace sff
     class menu
     {
     protected:
-        elements *el;
-        
-        elements* getLast(elements* el);
+        //drawables
+        sff::linked_list<element> drawables;
+
+        //logic
+        sff::linked_list<updateable*> updateables;
+        sff::linked_list<interactable*> interactables;
 
         bool menuIsOpen;
         sf::Color clearColor;
 
         //can handle additional inputs you may want to track
         virtual void additionalInputs(sf::Event::EventType eType) = 0;
-
-        template<typename T>
-        const void* genericAdd(bool deleteOnSceneEnd);
         
         clock_t tickTime;
         clock_t elapsedTime;
@@ -67,9 +57,11 @@ namespace sff
         virtual void Update();
         virtual void FixedUpdate();
         
-        void add(drawable*      element, bool deleteOnSceneEnd = false, sf::Uint32 additionalTypes = 0);
-        void add(interactable*  element, bool deleteOnSceneEnd = false, sf::Uint32 additionalTypes = 0);
-        void add(sf::Drawable*  element, bool deleteOnSceneEnd = false, sf::Uint32 additionalTypes = 0);
+        void add(drawable*);
+        void add(sf::Drawable*);
+        void add(interactable*);
+
+        void addUpdate(updateable*);
 
         void mainLoop(sf::RenderWindow* win);
 

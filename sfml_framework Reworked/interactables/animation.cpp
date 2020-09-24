@@ -34,7 +34,7 @@ namespace sff
 	
 	int animation::createState(anim& state)
 	{
-		int animSize = animList.size();
+		int animSize = (int)animList.size();
 
 		animList.emplace_back(state);
 
@@ -87,11 +87,11 @@ namespace sff
 
 	void animation::advanceAnimation()
 	{
-		if ((sheetRectIndex.x++) >= spriteSheetGrid.x)
+		if ((++sheetRectIndex.x) >= spriteSheetGrid.x)
 		{
 			sheetRectIndex.x = 0;
 
-			if ((sheetRectIndex.y++) >= spriteSheetGrid.y)
+			if ((++sheetRectIndex.y) >= spriteSheetGrid.y)
 			{
 				sheetRectIndex.y = 0;
 			}
@@ -100,7 +100,7 @@ namespace sff
 		sheetRect.left = startPos.x + (sheetRectIndex.x * cellDim.x);
 		sheetRect.top  = startPos.y + (sheetRectIndex.y * cellDim.y);
 		
-		if ((animIndex++) == animList[currentState].frames)
+		if ((++animIndex) == animList[currentState].frames)
 		{
 			animIndex = 0;
 		}

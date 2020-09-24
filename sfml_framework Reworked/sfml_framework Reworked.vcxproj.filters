@@ -48,6 +48,9 @@
     <ClCompile Include="updateable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="linked_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sfml_logic.hpp">
@@ -75,6 +78,9 @@
       <Filter>Header Files\interactables</Filter>
     </ClInclude>
     <ClInclude Include="updateable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="linked_list.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,90 +3,48 @@
 
 namespace sff
 {
-	elements* menu::getLast(elements* el)
-	{
-		elements* ret = nullptr;
-
-		if (el == nullptr)
-			ret = nullptr;
-		else if (el->next == nullptr)
-			ret = el;
-		else
-			ret = getLast(el->next);
-
-		return ret;
-	}
-
 	menu::menu()
 	{
 		tickTime = CLOCKS_PER_SEC / (long)10;
 		elapsedTime = std::clock();
-		el = nullptr;
 		menuIsOpen = true;
 		clearColor = sf::Color::Black;
 	}
 
-	menu::~menu()
+	menu::~menu(){}
+
+	void menu::add(drawable* toAdd)
 	{
-		elements* placeHolder = el;
-		elements* deletable;
+		element placeHolderEl;
+		placeHolderEl.elType = type::sffDrawable;
+		placeHolderEl.toDraw.sffDraw = toAdd;
 
-		while (placeHolder != nullptr)
-		{
-			deletable = placeHolder;
-			placeHolder = placeHolder->next;
-
-			if (deletable->deleteOnSceneEnd)
-			{
-				sf::Uint32 elType = deletable->elementType;
-				if		((elType & type::sfDrawable) ==  type::sfDrawable)	delete deletable->element.sfDraw;
-				else if	((elType & type::sffDrawable) == type::sffDrawable)	delete deletable->element.sffDraw;
-
-				delete deletable;
-			}
-		}
+		drawables.append(placeHolderEl);
 	}
 
-	template<typename T>
-	const void* menu::genericAdd(bool deleteOnSceneEnd)
+	void menu::add(sf::Drawable* toAdd)
 	{
-		elements* lastElement = getLast(el);
+		element placeHolderEl;
+		placeHolderEl.elType = type::sfDrawable;
+		placeHolderEl.toDraw.sfDraw = toAdd;
 
-		if (lastElement == nullptr)
-		{
-			el = new elements;
-			lastElement = el;
-		}
-		else {
-			lastElement->next = new elements;
-			lastElement = lastElement->next;
-		}
-		
-		lastElement->deleteOnSceneEnd = deleteOnSceneEnd;
-		lastElement->next = nullptr;
-		
-		return lastElement;
+		drawables.insert(drawables.length(), placeHolderEl);
 	}
 
-	void menu::add(drawable* element, bool deleteOnSceneEnd, sf::Uint32 additionalTypes)
+	void menu::add(interactable* toAdd)
 	{
-		elements* lastElement = (elements*)genericAdd<drawable*>(deleteOnSceneEnd);
-		lastElement->elementType = type::sffDrawable | additionalTypes;
-		lastElement->element.sffDraw = element;
+		interactables.insert(interactables.length(), toAdd);
+
+		element placeHolderEl;
+		placeHolderEl.elType = type::sffDrawable;
+		placeHolderEl.toDraw.sffDraw = toAdd;
+
+		drawables.insert(drawables.length(), placeHolderEl);
 	}
 
-	void menu::add(interactable* element, bool deleteOnSceneEnd, sf::Uint32 additionalTypes)
+	void menu::addUpdate(updateable* toAdd)
 	{
-		elements* lastElement = (elements*)genericAdd<interactable*>(deleteOnSceneEnd);
-		lastElement->elementType = type::sffInteractable | additionalTypes;
-		lastElement->element.sffDraw = (drawable*)element;
-	}
-
-	void menu::add(sf::Drawable* element, bool deleteOnSceneEnd, sf::Uint32 additionalTypes)
-	{
-		elements* lastElement = (elements*)genericAdd<sf::Drawable*>(deleteOnSceneEnd);
-		lastElement->elementType = type::sfDrawable | additionalTypes;
-		lastElement->element.sfDraw = element;
+		updateables.append(toAdd);
 	}
 
 	void menu::Update(){}
@@ -114,23 +72,17 @@ namespace sff
 
 						sf::Vector2i mousePosition = sf::Mouse::getPosition(*win);
 
-						elements* placeHolder = el;
 						interactable* winElement;
 
-						while (placeHolder != nullptr)
+						for(int a=0; a<interactables.length(); a++)
 						{
-							if (placeHolder->elementType & type::sffInteractable)
-							{
-								winElement = ((interactable*)placeHolder->element.sffDraw);
+							winElement = interactables[a];
 
-								if (winElement->contains(sf::Vector2f(mousePosition)))
-									if (clickReg)
-										winElement->click();
-									else
-										winElement->hover();
-
-							}
-							placeHolder = placeHolder->next;
+							if (winElement->contains(sf::Vector2f(mousePosition)))
+								if (clickReg)
+									winElement->click();
+								else
+									winElement->hover();
 						}
 						
 
@@ -139,6 +91,7 @@ namespace sff
 				}
 			}
 
+			//updating the various elements
 			Update();
 			if (elapsedTime > tickTime)
 			{
@@ -146,24 +99,23 @@ namespace sff
 				FixedUpdate();
 			}
 
+			for (int i = 0; i < drawables.length(); i++)
+				updateables[i]->update();
+
 			win->clear(clearColor);
 
-			//this is where we update and draw every element of the menu
-			elements* placeHolder = el;
-
-			while (placeHolder != nullptr)
+			for(int i=0; i<drawables.length(); i++)
 			{
-				if (placeHolder->elementType & type::sffUpdatable)
-					((updateable*)placeHolder->element.sffDraw)->update();
+				switch (drawables[i].elType)
+				{
+				case type::sfDrawable:
+					win->draw(*drawables[i].toDraw.sfDraw);
+					break;
 
-				if (placeHolder->elementType & type::sffDrawable)
-					placeHolder->element.sffDraw->render(win);
-
-				else if (placeHolder->elementType & type::sfDrawable)
-					win->draw(*placeHolder->element.sfDraw);
-					
-
-				placeHolder = placeHolder->next;
+				case type::sffDrawable:
+					drawables[i].toDraw.sffDraw->render(win);
+					break;
+				}
 			}
 
 			win->display();
