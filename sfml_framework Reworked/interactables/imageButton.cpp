@@ -10,6 +10,9 @@ namespace sff
 		onClick = nullptr;
 		onHover = nullptr;
 
+		leaveOnHover = nullptr;
+		leaveOnClick = nullptr;
+
 		pointsOfInterest = nullptr;
 		pointsCnt = 0;
 
@@ -21,6 +24,9 @@ namespace sff
 	{
 		onClick = nullptr;
 		onHover = nullptr;
+
+		leaveOnHover = nullptr;
+		leaveOnClick = nullptr;
 
 		pointsOfInterest = nullptr;
 		pointsCnt = 0;
@@ -143,16 +149,45 @@ namespace sff
 		this->onHover = &onHover;
 	}
 
+	void imageButton::setLeaveOnHover(std::function<void()>& leaveOnHover)
+	{
+		this->leaveOnHover = &leaveOnHover;
+	}
+
+	void imageButton::setLeaveOnClick(std::function<void()>& leaveOnClick)
+	{
+		this->leaveOnClick = &leaveOnClick;
+	}
+
+
 	void imageButton::click()
 	{
-		if (onHover != nullptr)
+		if (onClick != nullptr)
 			(*onClick)();
+		wasClick = true;
 	}
 
 	void imageButton::hover()
 	{
 		if (onHover != nullptr)
 			(*onHover)();
+		wasHover = true;
+	}
+
+	void imageButton::leaveHover()
+	{
+		if (leaveOnHover != nullptr)
+			(*leaveOnHover)();
+
+		wasHover = false;
+	}
+
+	void imageButton::leaveClick()
+	{
+		if (leaveOnClick != nullptr)
+			(*leaveOnClick)();
+
+		wasClick = false;
 	}
 
 

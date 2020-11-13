@@ -3,6 +3,15 @@
 
 namespace sff
 {
+    interactable::interactable()
+    {
+        pointsCnt = 0;
+        pointsOfInterest = nullptr;
+        wasHover = false;
+        wasClick = false;
+    }
+
+
     bool interactable::contains(sf::Vector2f point)
     {
         bool ret = false;
@@ -17,5 +26,16 @@ namespace sff
         }
 
         return ret;
+    }
+
+
+    bool interactable::getWasHover()
+    {
+        return wasHover;
+    }
+
+    bool interactable::getWasClick()
+    {
+        return wasClick;
     }
 }

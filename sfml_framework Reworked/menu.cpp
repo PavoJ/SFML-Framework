@@ -33,13 +33,13 @@ namespace sff
 
 	void menu::add(interactable* toAdd)
 	{
-		interactables.insert(interactables.length(), toAdd);
+		interactables.append(toAdd);
 
 		element placeHolderEl;
 		placeHolderEl.elType = type::sffDrawable;
 		placeHolderEl.toDraw.sffDraw = toAdd;
 
-		drawables.insert(drawables.length(), placeHolderEl);
+		drawables.append(placeHolderEl);
 	}
 
 	void menu::addUpdate(updateable* toAdd)
@@ -67,6 +67,7 @@ namespace sff
 
 					case sf::Event::MouseMoved:
 					case sf::Event::MouseButtonPressed:
+					case sf::Event::MouseButtonReleased:
 					{
 						bool clickReg = sf::Mouse::isButtonPressed(sf::Mouse::Left);
 
@@ -83,6 +84,12 @@ namespace sff
 									winElement->click();
 								else
 									winElement->hover();
+
+							if (!winElement->contains(sf::Vector2f(mousePosition)) && winElement->getWasHover())
+								winElement->leaveHover();
+
+							if (!clickReg && winElement->getWasClick() && winElement->contains(sf::Vector2f(mousePosition)))
+								winElement->leaveClick();
 						}
 						
 
@@ -99,7 +106,7 @@ namespace sff
 				FixedUpdate();
 			}
 
-			for (int i = 0; i < drawables.length(); i++)
+			for (int i = 0; i < updateables.length(); i++)
 				updateables[i]->update();
 
 			win->clear(clearColor);

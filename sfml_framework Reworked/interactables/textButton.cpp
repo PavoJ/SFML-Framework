@@ -162,9 +162,19 @@ namespace sff{
         this->onClick = &onClick;
     }
 
+    void textButton::setLeaveOnClick(std::function<void()>& leaveOnClick)
+    {
+        this->leaveOnClick = &leaveOnClick;
+    }
+
     void textButton::setOnHover(std::function<void()> &onHover)
     {
         this->onHover = &onHover;
+    }
+
+    void textButton::setLeaveOnHover(std::function<void()>& leaveOnHover)
+    {
+        this->leaveOnHover = &leaveOnHover;
     }
 
     void textButton::setPosition(sf::Vector2f &pos) 
@@ -193,14 +203,34 @@ namespace sff{
 
     void textButton::click()
     {
-        if (onHover != nullptr)
+        if (onClick != nullptr)
             (*onClick)();
+
+        wasClick = true;
+    }
+
+    void textButton::leaveClick()
+    {
+        if (leaveOnClick != nullptr)
+            (*leaveOnClick)();
+
+        wasClick = false;
     }
 
     void textButton::hover()
     {
         if(onHover != nullptr)
             (*onHover)();
+
+        wasHover = true;
+    }
+
+    void textButton::leaveHover()
+    {
+        if (leaveOnHover != nullptr)
+            (*leaveOnHover)();
+
+        wasHover = false;
     }
 
     void textButton::updatePointsOfInterest()

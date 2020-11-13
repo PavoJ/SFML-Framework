@@ -18,13 +18,22 @@ namespace sff
         sf::FloatRect* pointsOfInterest;
         int pointsCnt;//pointsOfInterest counter
 
+        bool wasHover, wasClick;
+
         virtual void updatePointsOfInterest() = 0;
     public:
+        interactable();
 
         bool contains(sf::Vector2f point);
 
-        virtual void click() = 0;
+        bool getWasHover();
+        bool getWasClick();
+
         virtual void hover() = 0;
+        virtual void leaveHover() = 0;
+        virtual void click() = 0;
+        virtual void leaveClick() = 0;
+
     };
 
 }

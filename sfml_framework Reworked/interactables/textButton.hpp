@@ -24,7 +24,9 @@ namespace sff
         sf::RectangleShape buttonRect;
 
         std::function<void()>* onClick;
+        std::function<void()>* leaveOnClick;
         std::function<void()>* onHover;
+        std::function<void()>* leaveOnHover;
 
         void updateRectanglePosition();
         void updatePointsOfInterest();
@@ -54,16 +56,20 @@ namespace sff
 
         padding_struct getPadding();
 
-        void setOnClick(std::function<void()>& onClick);
         void setOnHover(std::function<void()>& onHover);
+        void setLeaveOnHover(std::function<void()>& leaveOnHover);
+        void setOnClick(std::function<void()>& onClick);
+        void setLeaveOnClick(std::function<void()>& leaveOnClick);
 
         void setPosition(sf::Vector2f &pos);
         void setPosition(float x, float y);
 
         void setScale(sf::Vector2f &scale);
 
-        void click();
         void hover();
+        void leaveHover();
+        void click();
+        void leaveClick();
 
         void render(sf::RenderWindow* win);
     };
